@@ -111,43 +111,6 @@ The watch firmware derives BPM from the optical PPG sensor on the back of the wa
 
 ---
 
-## Getting the Apps (APKs)
-
-> **APK files are not included in this repository.**  
-> Built debug APKs are ~**40 MB** each (Edge Impulse C++ libraries + NDK binaries). GitHub recommends keeping repos lean — build from source instead, or download from Releases.
-
-### Option A — Build yourself (recommended)
-
-```powershell
-# Windows
-$env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"
-cd fossil-ei-collector
-copy gradle.properties.example gradle.properties
-# Edit gradle.properties — add your EI_API_KEY
-
-.\gradlew.bat :app:assembleDebug :phone:assembleDebug
-```
-
-Output:
-- **Watch app:** `app/build/outputs/apk/debug/app-debug.apk`
-- **Phone app:** `phone/build/outputs/apk/debug/phone-debug.apk`
-
-### Option B — GitHub Releases
-
-If APKs are attached to a GitHub Release, download them there. Releases support files up to 2 GB — unlike committing binaries directly into the repo.
-
-### Option C — Install on watch
-
-```bash
-adb connect <watch-ip>:<port>
-adb install app-debug.apk
-
-adb shell pm grant com.example.eidatacollector android.permission.BODY_SENSORS
-adb shell pm grant com.example.eidatacollector android.permission.ACTIVITY_RECOGNITION
-adb shell pm grant com.example.eidatacollector android.permission.POST_NOTIFICATIONS
-```
-
----
 
 ## Setup
 
